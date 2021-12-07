@@ -2,9 +2,12 @@ package human_kind;
 
 public class Policeman extends Human{
     {
-        this.setType("human_kind.Policeman");
+        this.setType(Policeman.class);
     }
-    Policeman(String name){
+    public Policeman(String name){
         this.setName(name);
+    }
+    public Policeman(){
+
     }
 }

@@ -10,15 +10,23 @@ public abstract class Vehicle {
     private int numOfOccupiedPlaces;
     private int numOfAvablePlaces;
     private String type;
-    private String typeOfHuman;
+    private Class<?> typeOfHuman = (new Human()).getClass();
     private String id;
 
-    public void boarding(Human human) throws OverloadException {
+    public void boarding(Human human) throws OverloadException, WrongTypeOfHumanException, AlreadyInVehicle {
         if (this.getNumOfOccupiedPlaces() >= this.getNumOfAvablePlaces()){
             throw new OverloadException(this);
         } else {
-            this.incrementNumOfOccupiedPlaces();
-            this.boardOnePeople(human);
+            if (human.getType().equals(this.typeOfHuman)){
+                if (this.allPeople.contains(human)){
+                    throw new AlreadyInVehicle(human);
+                } else {
+                    this.incrementNumOfOccupiedPlaces();
+                    this.boardOnePeople(human);
+                }
+            } else {
+                throw new WrongTypeOfHumanException(this, human);
+            }
         }
     }
     public void unBoarding(Human human) throws NoExistingPersonException, NoExistingPeopleException {
@@ -45,7 +53,7 @@ public abstract class Vehicle {
     public String getType() {
         return this.type;
     }
-    public String getTypeOfHuman() {
+    public Class<?> getTypeOfHuman() {
         return this.typeOfHuman;
     }
     public int getNumOfOccupiedPlaces() {
@@ -64,7 +72,7 @@ public abstract class Vehicle {
     protected void setType(String type) {
         this.type = type;
     }
-    protected void setTypeOfHuman(String typeOfHuman) {
+    protected void setTypeOfHuman(Class<?> typeOfHuman) {
         this.typeOfHuman = typeOfHuman;
     }
     protected void incrementNumOfOccupiedPlaces() {
@@ -78,8 +86,13 @@ public abstract class Vehicle {
     }
     protected void setAllPeople(ArrayList<Human> allPeople) {
         this.allPeople = allPeople;
-    }
+    };
     private void boardOnePeople(Human human){
         this.allPeople.add(human);
+    }
+
+    @Override
+    public String toString(){
+        return this.id;
     }
 }
