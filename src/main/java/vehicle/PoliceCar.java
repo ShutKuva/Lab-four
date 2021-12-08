@@ -1,12 +1,21 @@
 package vehicle;
 
+import human_kind.Human;
 import human_kind.Policeman;
 
+import java.util.ArrayList;
+
 public class PoliceCar extends Car{
-    PoliceCar(){
+    {
         this.setNumOfAvablePlaces(4);
         this.setType("PoliceCar");
         this.setId();
-        this.setTypeOfHuman((new Policeman()).getClass());
+        this.setTypeOfHuman(Policeman.class);
+    }
+    public PoliceCar(ArrayList<Human> humans){
+        this.boardNotOneHuman(humans);
+    }
+    public PoliceCar(){
+
     }
 }

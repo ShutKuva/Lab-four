@@ -10,7 +10,7 @@ public abstract class Vehicle {
     private int numOfOccupiedPlaces;
     private int numOfAvablePlaces;
     private String type;
-    private Class<?> typeOfHuman = (new Human()).getClass();
+    private Class typeOfHuman = Human.class;
     private String id;
 
     public void boarding(Human human) throws OverloadException, WrongTypeOfHumanException, AlreadyInVehicle {
@@ -26,6 +26,20 @@ public abstract class Vehicle {
                 }
             } else {
                 throw new WrongTypeOfHumanException(this, human);
+            }
+        }
+    }
+
+    public void boardNotOneHuman(ArrayList<Human> humans){
+        for (Human temp : humans){
+            try{
+                this.boarding(temp);
+            } catch (OverloadException e){
+                System.out.println(e.getMessage());
+            } catch (WrongTypeOfHumanException e){
+                System.out.println(e.getMessage());
+            } catch (AlreadyInVehicle e){
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -72,8 +86,11 @@ public abstract class Vehicle {
     protected void setType(String type) {
         this.type = type;
     }
-    protected void setTypeOfHuman(Class<?> typeOfHuman) {
+    protected void setTypeOfHuman(Class typeOfHuman) {
         this.typeOfHuman = typeOfHuman;
+    }
+    protected void setNumOfOccupiedPlaces(int num){
+        this.numOfOccupiedPlaces = num;
     }
     protected void incrementNumOfOccupiedPlaces() {
         this.numOfOccupiedPlaces++;

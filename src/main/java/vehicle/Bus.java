@@ -1,9 +1,19 @@
 package vehicle;
 
+import human_kind.Human;
+
+import java.util.ArrayList;
+
 public class Bus extends Vehicle{
-    Bus(){
-        this.setNumOfAvablePlaces(20);
+    {
+        this.setNumOfAvablePlaces(4);
         this.setType("Bus");
         this.setId();
+    }
+    public Bus(ArrayList<Human> humans){
+        this.boardNotOneHuman(humans);
+    }
+    public Bus(){
+
     }
 }

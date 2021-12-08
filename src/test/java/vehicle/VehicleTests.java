@@ -4,7 +4,6 @@ import exceptions.AlreadyInVehicle;
 import exceptions.OverloadException;
 import exceptions.NoExistingPeopleException;
 import exceptions.WrongTypeOfHumanException;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import human_kind.Human;

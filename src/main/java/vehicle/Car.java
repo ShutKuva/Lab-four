@@ -1,12 +1,18 @@
 package vehicle;
 
-import exceptions.*;
 import human_kind.Human;
+import java.util.ArrayList;
 
 public class Car extends Vehicle{
-    Car(){
+    {
         this.setNumOfAvablePlaces(4);
         this.setType("Car");
         this.setId();
+    }
+    public Car(ArrayList<Human> humans){
+        this.boardNotOneHuman(humans);
+    }
+    public Car(){
+
     }
 }

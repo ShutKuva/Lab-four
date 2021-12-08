@@ -16,16 +16,16 @@ public class Road {
 
     }
 
-    static int peopleInTrip(Road r) {
+    int peopleInTrip() {
         int res = 0;
-        for (Vehicle temp : r.vehicles) {
+        for (Vehicle temp : this.vehicles) {
             res += temp.getNumOfOccupiedPlaces();
         }
         return res;
     }
 
-    static void addNewVehicle(Road r, Vehicle v) {
-        r.vehicles.add(v);
+    void addNewVehicle(Vehicle v) {
+        this.vehicles.add(v);
     }
 
     public List<Vehicle> getVehicles() {
